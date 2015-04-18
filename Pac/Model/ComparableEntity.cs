@@ -1,13 +1,12 @@
 ﻿using System;
 using Ocon.Entity;
-
-namespace HueLightClient
+namespace Pac.Model
 {
 	public abstract class ComparableEntity : IEntity, IComparable<ComparableEntity>
 	{
-		public Guid Id { get; set; }
-		public Guid WidgetId { get; set; }
-		public int CompareTo(ComparableEntity other)
+	    public Guid Id { get; set; }
+	    public Guid WidgetId { get; set; }
+	    public int CompareTo(ComparableEntity other)
 		{
 			return Id.CompareTo(other.Id);
 		}

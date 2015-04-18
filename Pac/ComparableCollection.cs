@@ -2,12 +2,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Ocon.Entity;
 
 namespace Pac
 {
-    class ComparableCollection<T> : ICollection<T>, IComparable<ComparableCollection<T>>
+    class ComparableCollection<T> : ICollection<T>, IComparable<ComparableCollection<T>> where T : IEntity
     {
         private readonly ICollection<T> _list;
 

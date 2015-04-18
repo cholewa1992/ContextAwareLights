@@ -42,6 +42,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="Ocon, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ocon\Code\Ocon\Ocon\bin\Release\Ocon.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -51,10 +55,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EntityEquallityCompare.cs" />
     <Compile Include="Model\Beacon.cs" />
     <Compile Include="ComparableCollection.cs" />
-    <Compile Include="ComparableEntity.cs" />
-    <Compile Include="Model\Device.cs" />
+    <Compile Include="Model\ComparableEntity.cs" />
+    <Compile Include="Model\HueBulb.cs" />
+    <Compile Include="Model\DeviceGroup.cs" />
+    <Compile Include="Model\IDevice.cs" />
+    <Compile Include="Model\Situation.cs" />
     <Compile Include="Pac.cs" />
     <Compile Include="Model\Person.cs" />
     <Compile Include="Program.cs" />
@@ -67,9 +75,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\..\repo\ocon\Code\Ocon\Ocon\Ocon.csproj">
-      <Project>{4ced25d0-faac-486f-8b94-63fe8f1da9fc}</Project>
-      <Name>Ocon</Name>
+    <ProjectReference Include="..\..\ubilight\ubilight\ubilight\ubilight.csproj">
+      <Project>{526ac6a8-7722-4d17-b3e2-5b509134c5e1}</Project>
+      <Name>ubilight</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
