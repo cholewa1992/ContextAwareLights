@@ -14,7 +14,9 @@ namespace Pac.Model
         public int CompareTo(Beacon other)
         {
             if (Major == other.Major && Minor == other.Minor)
-                return Proximity == other.Proximity ? 0 : 1;
+            {
+                return Distance < other.Distance ? 0 : 1;
+            }
             return -1;
         }
     }

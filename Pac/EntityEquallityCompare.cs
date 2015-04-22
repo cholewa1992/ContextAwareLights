@@ -19,6 +19,17 @@ namespace Pac
 
     public class BeaconEquallityCompare : IEqualityComparer<Beacon>
     {
+        private static BeaconEquallityCompare _instace;
+
+        public static BeaconEquallityCompare GetInstace()
+        {
+            return _instace ?? (_instace = new BeaconEquallityCompare());
+        }
+        private BeaconEquallityCompare()
+        {
+            
+        }
+
         public bool Equals(Beacon x, Beacon y)
         {
             return 0 == x.CompareTo(y);
@@ -26,7 +37,7 @@ namespace Pac
 
         public int GetHashCode(Beacon obj)
         {
-            return (obj.Major << obj.Minor << obj.Proximity.GetHashCode()).GetHashCode();
+            return (obj.Major << obj.Minor).GetHashCode();
         }
     }
 }
