@@ -1,31 +1,39 @@
-﻿namespace Pac.Model
+﻿using System.Collections.Generic;
+using ubilight;
+using ubilight.LightingSystems;
+
+namespace Pac.Model
 {
-    class Situation : IDevice
+    class Situation : ISituation
     {
-        private readonly IDevice _devices;
+        private readonly string[] _lightIDs;
+        private Ubilight _ubi;
 
         public Zone Zone { get; set; }
         public string Name { get; set; }
 
-        public Situation(Zone zone, IDevice device)
+        public Situation(Zone zone, string[] lightIDs, Ubilight ubilight)
         {
+            _lightIDs = lightIDs;
             Zone = zone;
-            _devices = device;
+            _ubi = ubilight;
         }
         
         public void On()
         {
-            _devices.On();
+            foreach (var lightID in _lightIDs)
+            {
+                _ubi.TurnOn(lightID);
+            }
         }
 
         public void Off()
         {
-            _devices.Off();
+            foreach (var lightID in _lightIDs)
+            {
+                _ubi.TurnOff(lightID);
+            }
         }
 
-        public void Restore()
-        {
-            _devices.Restore();
-        }
     }
 }

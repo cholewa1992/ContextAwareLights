@@ -13,7 +13,7 @@ namespace Pac
 
         public int GetHashCode(T obj)
         {
-            return obj.WidgetId.GetHashCode() * obj.Id.GetHashCode();
+            return obj.WidgetId.GetHashCode()*obj.Id.GetHashCode();
         }
     }
 

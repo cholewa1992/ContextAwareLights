@@ -1,10 +1,10 @@
 ﻿namespace Pac.Model
 {
-    public interface IDevice
+    internal interface ISituation
     {
+        Zone Zone { get; set; }
         string Name { get; set; }
         void On();
         void Off();
-        void Restore();
     }
 }

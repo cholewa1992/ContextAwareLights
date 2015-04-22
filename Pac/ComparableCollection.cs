@@ -6,7 +6,7 @@ using Ocon.Entity;
 
 namespace Pac
 {
-    class ComparableCollection<T> : ICollection<T>, IComparable<ComparableCollection<T>> where T : IEntity
+    internal class ComparableCollection<T> : ICollection<T>, IComparable<ComparableCollection<T>> where T : IEntity
     {
         private readonly ICollection<T> _list;
 
