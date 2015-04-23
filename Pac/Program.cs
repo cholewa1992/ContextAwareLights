@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Linq;
 using System.Net.Mail;
 using System.Net.NetworkInformation;
@@ -28,7 +29,6 @@ namespace Pac
         public Program()
         {
             _pac = new Pac();
-            Console.ReadLine();
             SetupOcon();
 
             var florian = new Zone
@@ -45,29 +45,19 @@ namespace Pac
             _pac.AddSituation(new Scenario
             {
                 Zone = florian,
-                Devices = new List<IDevice>
-                {
-                    new UbiLightBulb("hue1")
-                }
+                Devices = new List<IDevice>{ new UbiLightBulb("hue1") }
             });
 
             _pac.AddSituation(new Scenario
             {
                 Zone = jacob,
-                Devices = new List<IDevice>
-                {
-                    new UbiLightBulb("hue2") {LightLevel = 100},
-                    new UbiLightBulb("hue3") {LightLevel = 20}
-                }
+                Devices = new List<IDevice> {new UbiLightBulb("hue2")}
             });
 
             _pac.AddSituation(new Scenario
             {
                 Zone = mathias,
-                Devices = new List<IDevice>
-                {
-                    new UbiLightBulb("hue3")
-                }
+                Devices = new List<IDevice> {new UbiLightBulb("hue3")}
             });
         }
 
@@ -81,15 +71,23 @@ namespace Pac
 
             comHelper.Broadcast(DeviceType.Central, 5);
 
-            comHelper.EntityEvent += entity =>
+
+            client.SituationStateChangedEvent += situation =>
             {
                 Console.Clear();
-                var person = (Person)entity;
-                int i = 0;
-                foreach (var b in person.Beacons)
+                var s = (Situation<ComparableCollection<Person>>) situation;
+
+                foreach (var person in s.Value)
                 {
-                    Console.WriteLine("{2}: Beacon {0} is {1} meters away", b.Minor, b.Distance, ++i);
+                    Console.WriteLine(person.Id);
+                    int i = 0;
+                    foreach (var b in person.Beacons)
+                    {
+                        Console.WriteLine("\t{2}: Beacon {0} is {1} meters away", b.Minor, b.Distance, ++i);
+                    }
                 }
+
+
             };
         }
     }

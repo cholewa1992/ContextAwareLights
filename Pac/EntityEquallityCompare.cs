@@ -13,7 +13,7 @@ namespace Pac
 
         public int GetHashCode(T obj)
         {
-            return obj.WidgetId.GetHashCode()*obj.Id.GetHashCode();
+            return obj.Id.GetHashCode();
         }
     }
 
@@ -25,9 +25,9 @@ namespace Pac
         {
             return _instace ?? (_instace = new BeaconEquallityCompare());
         }
+
         private BeaconEquallityCompare()
         {
-            
         }
 
         public bool Equals(Beacon x, Beacon y)

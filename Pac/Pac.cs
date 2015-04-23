@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Pac.Model;
 
 
@@ -16,21 +17,26 @@ namespace Pac
 
         public void ActOnPeoplePresent(ICollection<Person> people)
         {
+            var state = new Dictionary<IScenario, bool>();
+
             foreach (var scenario in _scenarios)
             {
-                if (people.Count == 0) scenario.Off();
+                state[scenario] = false;
 
                 foreach (var person in people)
                 {
-
-                    if (scenario.Zone.InZone(person))
-                    {
-                        scenario.Restore();
-                    }
-                    else
-                    {
-                        scenario.Off();
-                    }
+                    if (scenario.Zone.InZone(person)) state[scenario] = true;
+                }
+            }
+            foreach (var kvp in state)
+            {
+                if (kvp.Value)
+                {
+                    kvp.Key.Restore();
+                }
+                else
+                {
+                    kvp.Key.Off();
                 }
             }
         }

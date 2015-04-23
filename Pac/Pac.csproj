@@ -60,7 +60,6 @@
     <Compile Include="EntityEquallityCompare.cs" />
     <Compile Include="Model\Beacon.cs" />
     <Compile Include="ComparableCollection.cs" />
-    <Compile Include="Model\ComparableEntity.cs" />
     <Compile Include="Model\IDevice.cs" />
     <Compile Include="Model\IScenario.cs" />
     <Compile Include="Model\Scenario.cs" />

@@ -15,7 +15,7 @@ namespace Pac.Model
 
     public class UbiLightBulb : IDevice
     {
-        private static readonly Ubilight Ubilight = new Ubilight(new List<ILightingSystem> {new HueLightingSystem("hue")});
+        private static readonly Ubilight Ubilight = new Ubilight(new List<ILightingSystem> {new HueLightingSystem("hue", "130.226.141.243")});
         private int _lightLevel;
         public string Identifier { get; set; }
 
