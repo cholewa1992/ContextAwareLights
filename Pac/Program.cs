@@ -28,6 +28,7 @@ namespace Pac
         public Program()
         {
             _pac = new Pac();
+            Console.ReadLine();
             SetupOcon();
 
             var florian = new Zone

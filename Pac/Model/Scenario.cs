@@ -5,7 +5,7 @@ using ubilight;
 
 namespace Pac.Model
 {
-    class Scenario : IScenario
+    public class Scenario : IScenario
     {
 
         public Zone Zone { get; set; }

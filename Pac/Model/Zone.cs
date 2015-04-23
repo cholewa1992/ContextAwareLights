@@ -37,7 +37,7 @@ namespace Pac.Model
 
 
         #region Public methods
-        public bool InZone(Person person)
+        public virtual bool InZone(Person person)
         {
             return  Signature != null && person != null && Math.Ceiling(Signature.Count * Accuracy) <= Signature.Count(beacon => person.Beacons.Contains(beacon, BeaconEquallityCompare.GetInstace()));
         }
