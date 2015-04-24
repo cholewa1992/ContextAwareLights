@@ -122,5 +122,39 @@ namespace PacUnitTest
 
             Assert.IsFalse(zone.InZone(person));
         }
+
+        [TestMethod]
+        public void InZoneWithExcludeTrue()
+        {
+            var person = new Person()
+            {
+                Beacons = new[] { b1Real, b3Real }
+            };
+
+            var zone = new Zone
+            {
+                Signature = new List<Beacon> { b1, b3 },
+                Exclude = new List<Beacon> { b2 }
+            };
+
+            Assert.IsTrue(zone.InZone(person));
+        }
+
+        [TestMethod]
+        public void InZoneWithExcludeFalse()
+        {
+            var person = new Person()
+            {
+                Beacons = new[] { b1Real,b2Real, b3Real }
+            };
+
+            var zone = new Zone
+            {
+                Signature = new List<Beacon> { b1, b3 },
+                Exclude = new List<Beacon> { b2 }
+            };
+
+            Assert.IsFalse(zone.InZone(person));
+        }
     }
 }

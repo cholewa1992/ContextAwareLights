@@ -37,7 +37,8 @@ namespace Pac
 
             var mathias = new Zone
             {
-                Signature = new List<Beacon> {new Beacon {Major = 5000, Minor = 4325, Distance = 2}}
+                Signature = new List<Beacon> {new Beacon {Major = 5000, Minor = 4325, Distance = 3}},
+                Exclude = new List<Beacon> {new Beacon { Major = 5000, Minor = 3373, Distance = 2 }}
             };
 
             _pac.AddSituation(new Scenario

@@ -12,6 +12,12 @@ namespace Pac.Model
 
         #endregion
 
+        public Zone()
+        {
+            Signature = new List<Beacon>();
+            Exclude = new List<Beacon>();
+        }
+
         #region Properties
 
         /// <summary>
@@ -38,6 +44,8 @@ namespace Pac.Model
         /// </summary>
         public List<Beacon> Signature { get; set; }
 
+        public List<Beacon> Exclude { get; set; } 
+
         #endregion
 
 
@@ -46,6 +54,9 @@ namespace Pac.Model
         public virtual bool InZone(Person person)
         {
             if (Signature == null || person == null) return false;
+
+            if (Exclude.Any(beacon => person.Beacons.Contains(beacon, BeaconEquallityCompare.GetInstace())))
+                return false;
 
             var comp = Math.Ceiling(Signature.Count*Accuracy);
 
