@@ -77,38 +77,6 @@ namespace PacUnitTest
         }
 
         [TestMethod]
-        public void PacActOnPerson_OnePerson_ZoneTrue_LastUpdateExpired()
-        {
-            var deviceMock = new Mock<IDevice>();
-
-            deviceMock.Setup(foo => foo.On()).Verifiable();
-            deviceMock.Setup(foo => foo.Off()).Verifiable();
-            deviceMock.Setup(foo => foo.Restore()).Verifiable();
-
-            var deivce = deviceMock.Object;
-
-
-            var zoneMock = new Mock<Zone>();
-            zoneMock.Setup(foo => foo.InZone(It.IsAny<Person>())).Returns(true);
-
-            var zone = zoneMock.Object;
-
-            var pac = new Pac.Pac();
-            pac.AddSituation(new Scenario
-            {
-                Devices = new List<IDevice> { deivce },
-                Identifier = "mock1",
-                Zone = zone
-            });
-
-            pac.ActOnPeoplePresent(new List<Person> { new Person { LastUpdate = DateTime.UtcNow.AddSeconds(-20) } });
-
-            deviceMock.Verify(t => t.Restore(), Times.Never);
-            deviceMock.Verify(t => t.Off(), Times.Once);
-            deviceMock.Verify(t => t.On(), Times.Never);
-        }
-
-        [TestMethod]
         public void PacActOnPerson_OnePerson_ZoneFalse()
         {
             var deviceMock = new Mock<IDevice>();
