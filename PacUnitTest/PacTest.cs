@@ -69,7 +69,7 @@ namespace PacUnitTest
                 Zone = zone
             });
 
-            pac.ActOnPeoplePresent(new List<Person>{ new Person() });
+            pac.ActOnPeoplePresent(new List<Person>{ new Person{LastUpdate = DateTime.UtcNow } });
 
             deviceMock.Verify(t => t.Restore(), Times.Once);
             deviceMock.Verify(t => t.Off(), Times.Never);
@@ -124,8 +124,8 @@ namespace PacUnitTest
             var deivce2 = deviceMock2.Object;
 
 
-            var p1 = new Person();
-            var p2 = new Person();
+            var p1 = new Person { LastUpdate = DateTime.UtcNow };
+            var p2 = new Person { LastUpdate = DateTime.UtcNow };
 
             var zoneMock1 = new Mock<Zone>();
             zoneMock1.Setup(foo => foo.InZone(p1)).Returns(false);
@@ -178,9 +178,8 @@ namespace PacUnitTest
             deviceMock2.Setup(foo => foo.Restore()).Verifiable();
             var deivce2 = deviceMock2.Object;
 
-
-            var p1 = new Person();
-            var p2 = new Person();
+            var p1 = new Person { LastUpdate = DateTime.UtcNow };
+            var p2 = new Person { LastUpdate = DateTime.UtcNow };
 
             var zoneMock1 = new Mock<Zone>();
             zoneMock1.Setup(foo => foo.InZone(p1)).Returns(true);

@@ -131,6 +131,7 @@ namespace PacUnitTest
         }
 
         [TestMethod]
+<<<<<<< HEAD
         public void OutZoneThreshold()
         {
             var person = new Person()
@@ -141,9 +142,42 @@ namespace PacUnitTest
             var zone = new Zone()
             {
                 Signature = new List<Beacon>() { b3 }
+=======
+        public void InZoneWithExcludeTrue()
+        {
+            var person = new Person()
+            {
+                Beacons = new[] { b1Real, b3Real }
+            };
+
+            var zone = new Zone
+            {
+                Signature = new List<Beacon> { b1, b3 },
+                Exclude = new List<Beacon> { b2 }
+>>>>>>> 9a76cc96e3a9d49e064d006e900ad4d992148cbc
             };
 
             Assert.IsTrue(zone.InZone(person));
         }
+<<<<<<< HEAD
+=======
+
+        [TestMethod]
+        public void InZoneWithExcludeFalse()
+        {
+            var person = new Person()
+            {
+                Beacons = new[] { b1Real,b2Real, b3Real }
+            };
+
+            var zone = new Zone
+            {
+                Signature = new List<Beacon> { b1, b3 },
+                Exclude = new List<Beacon> { b2 }
+            };
+
+            Assert.IsFalse(zone.InZone(person));
+        }
+>>>>>>> 9a76cc96e3a9d49e064d006e900ad4d992148cbc
     }
 }
