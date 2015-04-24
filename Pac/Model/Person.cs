@@ -9,5 +9,6 @@ namespace Pac.Model
         public Beacon[] Beacons { get; set; }
 
         public Guid Id { get; set; }
+        public Guid WidgetId { get; set; }
     }
 }

@@ -46,6 +46,13 @@ namespace PacUnitTest
             Minor = 1923
         };
 
+        private Beacon b3thres = new Beacon
+        {
+            Distance = 6.2,
+            Major = 5000,
+            Minor = 1923
+        };
+
         private Beacon b3Real = new Beacon
         {
             Id = Guid.NewGuid(),
@@ -121,6 +128,22 @@ namespace PacUnitTest
             };
 
             Assert.IsFalse(zone.InZone(person));
+        }
+
+        [TestMethod]
+        public void OutZoneThreshold()
+        {
+            var person = new Person()
+            {
+                Beacons = new[] {b3thres}
+            };
+
+            var zone = new Zone()
+            {
+                Signature = new List<Beacon>() { b3 }
+            };
+
+            Assert.IsTrue(zone.InZone(person));
         }
     }
 }

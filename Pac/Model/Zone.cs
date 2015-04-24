@@ -10,6 +10,8 @@ namespace Pac.Model
 
         private double _accuracy = 1;
 
+        private List<Beacon> _priorBeacons;
+
         #endregion
 
         #region Properties
@@ -51,8 +53,45 @@ namespace Pac.Model
 
             int i = 0;
 
+            var tempList = new List<Beacon>();
+
             foreach (var beacon in Signature)
             {
+
+                double distance;
+                Beacon beacon2 = beacon;
+
+                
+                var sBeacon =
+                    person.Beacons.Where(beacon1 => BeaconEquallityCompare.GetInstace().Equals(beacon2, beacon1))
+                        .Select(b => b)
+                        .First();
+
+                if (sBeacon != null)
+                {
+                    if (_priorBeacons.Contains(sBeacon, BeaconEquallityCompare.GetInstace()))
+                    {
+                        if (sBeacon.Distance < beacon.Distance + 1)
+                        {
+                            comp++;
+                        }
+                    }
+                    else
+                    {
+                        if (sBeacon.Distance < beacon.Distance)
+                        {
+                            comp++;
+                        }
+                    }
+                }
+
+
+                if (person.Beacons.Contains(beacon, BeaconEquallityCompare.GetInstace()) && person.Beacons.Where(beacon1 => beacon1.Equals(beacon)).Select(beacon1 => beacon1.))
+                {
+                    
+
+                }
+
                 if (person.Beacons.Contains(beacon, BeaconEquallityCompare.GetInstace())) i++;
             }
 
