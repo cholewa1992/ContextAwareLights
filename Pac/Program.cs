@@ -1,18 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Globalization;
 using System.Linq;
-using System.Net.Mail;
-using System.Net.NetworkInformation;
-using System.Threading;
 using Ocon;
 using Ocon.OconCommunication;
 using Ocon.OconSerializer;
 using Ocon.TcpCom;
 using Pac.Model;
-using ubilight;
-using ubilight.LightingSystems;
 
 namespace Pac
 {
@@ -20,7 +13,7 @@ namespace Pac
     {
         private static void Main(string[] args)
         {
-            new Program();
+            var program = new Program();
             Console.ReadLine();
         }
 
@@ -29,18 +22,23 @@ namespace Pac
         public Program()
         {
             _pac = new Pac();
+            _pac.AutoOffAfter(20);
             SetupOcon();
 
             var florian = new Zone
             {
                 Signature = new List<Beacon> {new Beacon {Major = 5000, Minor = 4242, Distance = 3}}
             };
-            var jacob = new Zone {Signature = new List<Beacon> {new Beacon {Major = 5000, Minor = 3373, Distance = 2}}};
+
+            var jacob = new Zone
+            {
+                Signature = new List<Beacon> {new Beacon {Major = 5000, Minor = 3373, Distance = 2}}
+            };
+
             var mathias = new Zone
             {
                 Signature = new List<Beacon> {new Beacon {Major = 5000, Minor = 4325, Distance = 2}}
             };
-
 
             _pac.AddSituation(new Scenario
             {
@@ -65,7 +63,7 @@ namespace Pac
         {
             var comHelper = new OconComHelper(new TcpCom(new JsonNetAdapter()));
             var client = new OconClient(comHelper);
-            client.Subscribe(new Situation<ComparableCollection<Person>>(c => new ComparableCollection<Person>(c.OfType<Person>())));
+            client.Subscribe(new Situation<ComparableCollection<Person>>(c => new ComparableCollection<Person>(c.OfType<Person>().Where(p => p.LastUpdate.AddSeconds(20) > DateTime.UtcNow))));
             client.SituationStateChangedEvent += situation => _pac.ActOnPeoplePresent(((Situation<ComparableCollection<Person>>)situation).Value);
             var central = new OconCentral(new OconContextFilter(), comHelper);
 
@@ -80,14 +78,12 @@ namespace Pac
                 foreach (var person in s.Value)
                 {
                     Console.WriteLine(person.Id);
-                    int i = 0;
-                    foreach (var b in person.Beacons)
+                    for(var i = 0; i < person.Beacons.Length; i++)
                     {
-                        Console.WriteLine("\t{2}: Beacon {0} is {1} meters away", b.Minor, b.Distance, ++i);
+                        var beacon = person.Beacons[i];
+                        Console.WriteLine("\t{2}: Beacon {0} is {1} meters away", beacon.Minor, beacon.Distance, i);
                     }
                 }
-
-
             };
         }
     }

@@ -7,7 +7,7 @@ namespace Pac.Model
     public class Person : IEntity
     {
         public Beacon[] Beacons { get; set; }
-
         public Guid Id { get; set; }
+        public DateTime LastUpdate { get; set; }
     }
 }
