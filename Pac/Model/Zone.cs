@@ -10,7 +10,7 @@ namespace Pac.Model
 
         private double _accuracy = 1;
 
-        private List<Beacon> _priorBeacons;
+        private List<Beacon> _priorBeacons = new List<Beacon>();
 
         #endregion
 
@@ -69,12 +69,11 @@ namespace Pac.Model
             foreach (var beacon in Signature)
             {
 
-                double distance;
-                Beacon beacon2 = beacon;
+                Beacon beaconCondition = beacon;
 
                 
                 var sBeacon =
-                    person.Beacons.Where(beacon1 => BeaconEquallityCompare.GetInstace().Equals(beacon2, beacon1))
+                    person.Beacons.Where(beacon1 => BeaconEquallityCompare.GetInstace().Equals(beaconCondition, beacon1))
                         .Select(b => b)
                         .First();
 
@@ -82,28 +81,26 @@ namespace Pac.Model
                 {
                     if (_priorBeacons.Contains(sBeacon, BeaconEquallityCompare.GetInstace()))
                     {
-                        if (sBeacon.Distance < beacon.Distance + 1)
+                        if (sBeacon.Distance > beaconCondition.Distance + 1)
                         {
-                            comp++;
+                            i++;
+                            tempList.Add(sBeacon);
                         }
                     }
                     else
                     {
-                        if (sBeacon.Distance < beacon.Distance)
+                        if (sBeacon.Distance > beaconCondition.Distance + 1)
                         {
-                            comp++;
+                            i++;
+                            tempList.Add(sBeacon);
                         }
                     }
                 }
 
+                _priorBeacons = tempList;
 
-                if (person.Beacons.Contains(beacon, BeaconEquallityCompare.GetInstace()) && person.Beacons.Where(beacon1 => beacon1.Equals(beacon)).Select(beacon1 => beacon1.))
-                {
-                    
 
-                }
 
-                if (person.Beacons.Contains(beacon, BeaconEquallityCompare.GetInstace())) i++;
             }
 
             return comp <= i;

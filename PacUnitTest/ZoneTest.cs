@@ -39,6 +39,13 @@ namespace PacUnitTest
             Minor = 1922
         };
 
+        private Beacon b3close = new Beacon
+        {
+            Distance = 1,
+            Major = 5000,
+            Minor = 1923
+        };
+
         private Beacon b3 = new Beacon
         {
             Distance = 6,
@@ -131,18 +138,43 @@ namespace PacUnitTest
         }
 
         [TestMethod]
-<<<<<<< HEAD
-        public void OutZoneThreshold()
+        public void InZoneWithinThreshold()
         {
             var person = new Person()
             {
-                Beacons = new[] {b3thres}
+                Beacons = new[] {b3close}
+            };
+
+            var zone = new Zone()
+            {
+                Signature = new List<Beacon>() {b3}
+            };
+
+            Assert.IsFalse(zone.InZone(person));
+
+            zone.InZone(person);
+
+            person.Beacons = new[] {b3thres};
+
+            
+        }
+
+        [TestMethod]
+        public void OutZoneOutOfThreshold()
+        {
+            var person = new Person()
+            {
+                Beacons = new[] { b3thres }
             };
 
             var zone = new Zone()
             {
                 Signature = new List<Beacon>() { b3 }
-=======
+            };
+
+            Assert.IsFalse(zone.InZone(person));
+        }
+
         public void InZoneWithExcludeTrue()
         {
             var person = new Person()
@@ -154,13 +186,11 @@ namespace PacUnitTest
             {
                 Signature = new List<Beacon> { b1, b3 },
                 Exclude = new List<Beacon> { b2 }
->>>>>>> 9a76cc96e3a9d49e064d006e900ad4d992148cbc
             };
 
             Assert.IsTrue(zone.InZone(person));
         }
-<<<<<<< HEAD
-=======
+
 
         [TestMethod]
         public void InZoneWithExcludeFalse()
@@ -178,6 +208,5 @@ namespace PacUnitTest
 
             Assert.IsFalse(zone.InZone(person));
         }
->>>>>>> 9a76cc96e3a9d49e064d006e900ad4d992148cbc
     }
 }
