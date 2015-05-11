@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using ContextAwareLights.Model;
+using LightBulbs.LightingSystems;
 using Ocon;
 using Ocon.OconCommunication;
 using Ocon.OconSerializer;
-using ubilight;
-using ubilight.LightingSystems;
 
 namespace ContextAwareLights
 {
@@ -25,7 +24,7 @@ namespace ContextAwareLights
             _pac = new Cal();
             _pac.AutoOffAfter(20);
             SetupOcon();
-            UbiLightBulb.Ubilight = new Ubilight(new List<ILightingSystem> { new HueLightingSystem("hue", "169.254.2.185") });
+            LightBulb.LightBulbs = new LightBulbs.LightBulbs(new List<ILightingSystem> { new HueLightingSystem("hue", "169.254.2.185") });
 
             var spisebord = new Zone
             {
@@ -83,9 +82,9 @@ namespace ContextAwareLights
                 Zone = stue,
                 Devices = new HashSet<IDevice>
                 {
-                    new UbiLightBulb("hue1") {LightLevel = 25},
-                    new UbiLightBulb("hue2") {LightLevel = 0},
-                    new UbiLightBulb("hue3") {LightLevel = 25}
+                    new LightBulb("hue1") {LightLevel = 25},
+                    new LightBulb("hue2") {LightLevel = 0},
+                    new LightBulb("hue3") {LightLevel = 25}
                 },
             });
 
@@ -95,9 +94,9 @@ namespace ContextAwareLights
                 Priority = 1,
                 Devices = new HashSet<IDevice>
                 {
-                    new UbiLightBulb("hue1") {LightLevel = 1},
-                    new UbiLightBulb("hue2") {LightLevel = 0,},
-                    new UbiLightBulb("hue3") {LightLevel = 100}
+                    new LightBulb("hue1") {LightLevel = 1},
+                    new LightBulb("hue2") {LightLevel = 0,},
+                    new LightBulb("hue3") {LightLevel = 100}
                 },
             });
 
@@ -107,9 +106,9 @@ namespace ContextAwareLights
                 Zone = køkken,
                 Devices = new HashSet<IDevice>
                 {
-                    new UbiLightBulb("hue1") {LightLevel = 1},
-                    new UbiLightBulb("hue2") {LightLevel = 100},
-                    new UbiLightBulb("hue3") {LightLevel = 0,}
+                    new LightBulb("hue1") {LightLevel = 1},
+                    new LightBulb("hue2") {LightLevel = 100},
+                    new LightBulb("hue3") {LightLevel = 0,}
                 }
             });
 
@@ -119,9 +118,9 @@ namespace ContextAwareLights
                 Priority = 1,
                 Devices = new HashSet<IDevice>
                 {
-                    new UbiLightBulb("hue1") {LightLevel = 100,},
-                    new UbiLightBulb("hue2") {LightLevel = 0},
-                    new UbiLightBulb("hue3") {LightLevel = 1}
+                    new LightBulb("hue1") {LightLevel = 100,},
+                    new LightBulb("hue2") {LightLevel = 0},
+                    new LightBulb("hue3") {LightLevel = 1}
                 }
             });
         }

@@ -1,11 +1,10 @@
 ﻿using System;
-using ubilight;
 
 namespace ContextAwareLights.Model
 {
-    public class UbiLightBulb : IDevice
+    public class LightBulb : IDevice
     {
-        public static Ubilight Ubilight;
+        public static LightBulbs.LightBulbs LightBulbs;
         private int _lightLevel;
         public string Identifier { get; set; }
 
@@ -19,7 +18,7 @@ namespace ContextAwareLights.Model
             }
         }
 
-        public UbiLightBulb(string identifier)
+        public LightBulb(string identifier)
         {
             Identifier = identifier;
             LightLevel = 100;
@@ -27,12 +26,12 @@ namespace ContextAwareLights.Model
 
         public void On()
         {
-            Ubilight.TurnOn(Identifier);
+            LightBulbs.TurnOn(Identifier);
         }
 
         public void Off()
         {
-            Ubilight.TurnOff(Identifier);
+            LightBulbs.TurnOff(Identifier);
         }
 
         public void Restore()
@@ -41,13 +40,13 @@ namespace ContextAwareLights.Model
                 Off();
                 return; 
             }
-            Ubilight.SetLvel(Identifier, (double) LightLevel / 100);
+            LightBulbs.SetLvel(Identifier, (double) LightLevel / 100);
             On();
         }
 
         public override bool Equals(object obj)
         {
-            var other = obj as UbiLightBulb;
+            var other = obj as LightBulb;
             return other != null && Identifier == other.Identifier;
         }
 
