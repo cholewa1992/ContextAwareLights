@@ -1,14 +1,13 @@
 using System;
-using System.Security.Permissions;
+using System.Collections.Generic;
 using Ocon.Entity;
 
-namespace Pac.Model
+namespace ContextAwareLights.Model
 {
     public class Person : IEntity
     {
-        public Beacon[] Beacons { get; set; }
+        public HashSet<Beacon> Beacons { get; set; }
         public Guid Id { get; set; }
-
         public DateTime LastUpdate { get; set; }
     }
 }

@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using ContextAwareLights.Model;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using Pac;
-using Pac.Model;
 
 namespace PacUnitTest
 {
@@ -75,12 +74,12 @@ namespace PacUnitTest
         {
             var person = new Person()
             {
-                Beacons = new[] { b1Real, b2Real }
+                Beacons = new HashSet<Beacon>(new[] { b1Real, b2Real })
             };
 
             var zone = new Zone
             {
-                Signature = new List<Beacon> { b1, b2 }
+                Include = new HashSet<Beacon>(new List<Beacon> { b1, b2 })
             };
 
             Assert.IsTrue(zone.InZone(person));
@@ -92,12 +91,12 @@ namespace PacUnitTest
         {
             var person = new Person()
             {
-                Beacons = new[] { b1Real }
+                Beacons = new HashSet<Beacon>(new[] { b1Real })
             };
 
             var zone = new Zone
             {
-                Signature = new List<Beacon> { b1, b2 }
+                Include = new HashSet<Beacon>(new List<Beacon> { b1, b2 })
             };
 
             Assert.IsFalse(zone.InZone(person));
@@ -108,13 +107,13 @@ namespace PacUnitTest
         {
             var person = new Person()
             {
-                Beacons = new[] { b1Real }
+                Beacons = new HashSet<Beacon>(new[] { b1Real })
             };
 
             var zone = new Zone
             {
                 Accuracy = 0.5d,
-                Signature = new List<Beacon> { b1, b2 }
+                Include = new HashSet<Beacon>(new List<Beacon> { b1, b2 })
             };
 
             Assert.IsTrue(zone.InZone(person));
@@ -125,13 +124,13 @@ namespace PacUnitTest
         {
             var person = new Person()
             {
-                Beacons = new[] { b1Real }
+                Beacons = new HashSet<Beacon>(new[] { b1Real })
             };
 
             var zone = new Zone
             {
                 Accuracy = 0.5d,
-                Signature = new List<Beacon> { b1, b2, b3 }
+                Include = new HashSet<Beacon>(new List<Beacon> { b1, b2, b3 })
             };
 
             Assert.IsFalse(zone.InZone(person));
@@ -142,21 +141,19 @@ namespace PacUnitTest
         {
             var person = new Person()
             {
-                Beacons = new[] {b3close}
+                Beacons = new HashSet<Beacon>(new[] {b3close})
             };
 
             var zone = new Zone()
             {
-                Signature = new List<Beacon>() {b3}
+                Include = new HashSet<Beacon>(new List<Beacon>() {b3})
             };
-
-            Assert.IsFalse(zone.InZone(person));
 
             zone.InZone(person);
 
-            person.Beacons = new[] {b3thres};
+            person.Beacons = new HashSet<Beacon>(new[] {b3thres});
 
-            
+            Assert.IsTrue(zone.InZone(person));
         }
 
         [TestMethod]
@@ -164,12 +161,12 @@ namespace PacUnitTest
         {
             var person = new Person()
             {
-                Beacons = new[] { b3thres }
+                Beacons = new HashSet<Beacon>(new[] { b3thres })
             };
 
             var zone = new Zone()
             {
-                Signature = new List<Beacon>() { b3 }
+                Include = new HashSet<Beacon>(new List<Beacon>() { b3 })
             };
 
             Assert.IsFalse(zone.InZone(person));
@@ -179,13 +176,13 @@ namespace PacUnitTest
         {
             var person = new Person()
             {
-                Beacons = new[] { b1Real, b3Real }
+                Beacons = new HashSet<Beacon>(new[] { b1Real, b3Real })
             };
 
             var zone = new Zone
             {
-                Signature = new List<Beacon> { b1, b3 },
-                Exclude = new List<Beacon> { b2 }
+                Include = new HashSet<Beacon>(new List<Beacon> { b1, b3 }),
+                Exclude = new HashSet<Beacon>(new List<Beacon> { b2 })
             };
 
             Assert.IsTrue(zone.InZone(person));
@@ -197,13 +194,13 @@ namespace PacUnitTest
         {
             var person = new Person()
             {
-                Beacons = new[] { b1Real,b2Real, b3Real }
+                Beacons = new HashSet<Beacon>(new[] { b1Real,b2Real, b3Real })
             };
 
             var zone = new Zone
             {
-                Signature = new List<Beacon> { b1, b3 },
-                Exclude = new List<Beacon> { b2 }
+                Include = new HashSet<Beacon>(new List<Beacon> { b1, b3 }),
+                Exclude = new HashSet<Beacon>(new List<Beacon> { b2 })
             };
 
             Assert.IsFalse(zone.InZone(person));

@@ -63,9 +63,9 @@
     <Compile Include="ZoneTest.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Pac\Pac.csproj">
+    <ProjectReference Include="..\ContextAwareLights\ContextAwareLights.csproj">
       <Project>{eb3b2c97-46f6-4cb6-afad-11e600af23ca}</Project>
-      <Name>Pac</Name>
+      <Name>ContextAwareLights</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

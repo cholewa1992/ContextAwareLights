@@ -7,8 +7,8 @@
     <ProjectGuid>{EB3B2C97-46F6-4CB6-AFAD-11E600AF23CA}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Pac</RootNamespace>
-    <AssemblyName>Pac</AssemblyName>
+    <RootNamespace>ContextAwareLights</RootNamespace>
+    <AssemblyName>ContextAwareLights</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
@@ -57,17 +57,19 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CustomeCom.cs" />
     <Compile Include="EntityEquallityCompare.cs" />
     <Compile Include="Model\Beacon.cs" />
     <Compile Include="ComparableCollection.cs" />
     <Compile Include="Model\IDevice.cs" />
     <Compile Include="Model\IScenario.cs" />
+    <Compile Include="Model\IZone.cs" />
     <Compile Include="Model\Scenario.cs" />
-    <Compile Include="Pac.cs" />
+    <Compile Include="Model\UbiLightBulb.cs" />
+    <Compile Include="Cal.cs" />
     <Compile Include="Model\Person.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Model\Proximity.cs" />
     <Compile Include="Model\Zone.cs" />
   </ItemGroup>
   <ItemGroup>

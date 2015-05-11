@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using ContextAwareLights;
+using ContextAwareLights.Model;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using Pac;
-using Pac.Model;
 
 namespace PacUnitTest
 {
@@ -28,15 +28,15 @@ namespace PacUnitTest
 
             var zone = zoneMock.Object;
 
-            var pac = new Pac.Pac();
-            pac.AddSituation(new Scenario
+            var cal = new Cal();
+            cal.AddScenario(new Scenario
             {
-                Devices = new List<IDevice> { deivce },
+                Devices = new HashSet<IDevice> { deivce },
                 Identifier = "mock1",
                 Zone = zone
             });
 
-            pac.ActOnPeoplePresent(new List<Person>());
+            cal.ActOnPeoplePresent(new List<Person>());
 
             deviceMock.Verify(t => t.Restore(), Times.Never);
             deviceMock.Verify(t => t.Off(), Times.Once);
@@ -61,15 +61,15 @@ namespace PacUnitTest
 
             var zone = zoneMock.Object;
 
-            var pac = new Pac.Pac();
-            pac.AddSituation(new Scenario
+            var cal = new Cal();
+            cal.AddScenario(new Scenario
             {
-                Devices = new List<IDevice> {deivce},
+                Devices = new HashSet<IDevice> { deivce },
                 Identifier = "mock1",
                 Zone = zone
             });
 
-            pac.ActOnPeoplePresent(new List<Person>{ new Person{LastUpdate = DateTime.UtcNow } });
+            cal.ActOnPeoplePresent(new List<Person> { new Person { LastUpdate = DateTime.UtcNow } });
 
             deviceMock.Verify(t => t.Restore(), Times.Once);
             deviceMock.Verify(t => t.Off(), Times.Never);
@@ -93,15 +93,15 @@ namespace PacUnitTest
 
             var zone = zoneMock.Object;
 
-            var pac = new Pac.Pac();
-            pac.AddSituation(new Scenario
+            var cal = new Cal();
+            cal.AddScenario(new Scenario
             {
-                Devices = new List<IDevice> { deivce },
+                Devices = new HashSet<IDevice> { deivce },
                 Identifier = "mock1",
                 Zone = zone
             });
 
-            pac.ActOnPeoplePresent(new List<Person>{new Person()});
+            cal.ActOnPeoplePresent(new List<Person> { new Person() });
 
             deviceMock.Verify(t => t.Restore(), Times.Never);
             deviceMock.Verify(t => t.Off(), Times.Once);
@@ -137,22 +137,22 @@ namespace PacUnitTest
             zoneMock2.Setup(foo => foo.InZone(p2)).Returns(false);
             var zone2 = zoneMock2.Object;
 
-            var pac = new Pac.Pac();
-            pac.AddSituation(new Scenario
+            var cal = new Cal();
+            cal.AddScenario(new Scenario
             {
-                Devices = new List<IDevice> { deivce1 },
+                Devices = new HashSet<IDevice> { deivce1 },
                 Identifier = "mock1",
                 Zone = zone1
             });
 
-            pac.AddSituation(new Scenario
+            cal.AddScenario(new Scenario
             {
-                Devices = new List<IDevice> { deivce2 },
+                Devices = new HashSet<IDevice> { deivce2 },
                 Identifier = "mock2",
                 Zone = zone2
             });
 
-            pac.ActOnPeoplePresent(new List<Person> { p1, p2 });
+            cal.ActOnPeoplePresent(new List<Person> { p1, p2 });
 
             deviceMock1.Verify(t => t.Restore(), Times.Once);
             deviceMock1.Verify(t => t.Off(), Times.Never);
@@ -191,22 +191,22 @@ namespace PacUnitTest
             zoneMock2.Setup(foo => foo.InZone(p2)).Returns(false);
             var zone2 = zoneMock2.Object;
 
-            var pac = new Pac.Pac();
-            pac.AddSituation(new Scenario
+            var cal = new Cal();
+            cal.AddScenario(new Scenario
             {
-                Devices = new List<IDevice> { deivce1 },
+                Devices = new HashSet<IDevice> { deivce1 },
                 Identifier = "mock1",
                 Zone = zone1
             });
 
-            pac.AddSituation(new Scenario
+            cal.AddScenario(new Scenario
             {
-                Devices = new List<IDevice> { deivce2 },
+                Devices = new HashSet<IDevice> { deivce2 },
                 Identifier = "mock2",
                 Zone = zone2
             });
 
-            pac.ActOnPeoplePresent(new List<Person> { p1, p2 });
+            cal.ActOnPeoplePresent(new List<Person> { p1, p2 });
 
             deviceMock1.Verify(t => t.Restore(), Times.Once);
             deviceMock1.Verify(t => t.Off(), Times.Never);
@@ -246,22 +246,22 @@ namespace PacUnitTest
             zoneMock2.Setup(foo => foo.InZone(p2)).Returns(false);
             var zone2 = zoneMock2.Object;
 
-            var pac = new Pac.Pac();
-            pac.AddSituation(new Scenario
+            var cal = new Cal();
+            cal.AddScenario(new Scenario
             {
-                Devices = new List<IDevice> { deivce1 },
+                Devices = new HashSet<IDevice> { deivce1 },
                 Identifier = "mock1",
                 Zone = zone1
             });
 
-            pac.AddSituation(new Scenario
+            cal.AddScenario(new Scenario
             {
-                Devices = new List<IDevice> { deivce2 },
+                Devices = new HashSet<IDevice> { deivce2 },
                 Identifier = "mock2",
                 Zone = zone2
             });
 
-            pac.ActOnPeoplePresent(new List<Person> { p1, p2 });
+            cal.ActOnPeoplePresent(new List<Person> { p1, p2 });
 
             deviceMock1.Verify(t => t.Restore(), Times.Never);
             deviceMock1.Verify(t => t.Off(), Times.Once);

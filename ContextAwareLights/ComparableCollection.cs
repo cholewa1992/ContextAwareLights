@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Ocon.Entity;
 
-namespace Pac
+namespace ContextAwareLights
 {
     internal class ComparableCollection<T> : ICollection<T>, IComparable<ComparableCollection<T>> where T : IEntity
     {

@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
 using Ocon.Entity;
-using Pac.Model;
 
-namespace Pac
+namespace ContextAwareLights
 {
     public class EntityEquallityCompare<T> : IEqualityComparer<T> where T : IEntity
     {
@@ -17,7 +16,7 @@ namespace Pac
         }
     }
 
-    public class BeaconEquallityCompare : IEqualityComparer<Beacon>
+   /* public class BeaconEquallityCompare : IEqualityComparer<Beacon>
     {
         private static BeaconEquallityCompare _instace;
 
@@ -39,5 +38,5 @@ namespace Pac
         {
             return (obj.Major << obj.Minor).GetHashCode();
         }
-    }
+    }*/
 }

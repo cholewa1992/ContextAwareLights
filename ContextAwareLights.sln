@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pac", "Pac\Pac.csproj", "{EB3B2C97-46F6-4CB6-AFAD-11E600AF23CA}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{E15DC994-A6B2-40BA-A10C-37CA086D71D0}"
 	ProjectSection(SolutionItems) = preProject
 		.nuget\NuGet.Config = .nuget\NuGet.Config
@@ -12,7 +10,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{E15DC9
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PacUnitTest", "PacUnitTest\PacUnitTest.csproj", "{174009B0-13D4-40B6-806F-2074AF51C59D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContextAwareLights", "ContextAwareLights\ContextAwareLights.csproj", "{EB3B2C97-46F6-4CB6-AFAD-11E600AF23CA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalUnitTest", "CalUnitTest\CalUnitTest.csproj", "{174009B0-13D4-40B6-806F-2074AF51C59D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,5 +31,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{EB3B2C97-46F6-4CB6-AFAD-11E600AF23CA} = {E15DC994-A6B2-40BA-A10C-37CA086D71D0}
 	EndGlobalSection
 EndGlobal
