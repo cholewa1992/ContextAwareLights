@@ -45,6 +45,9 @@
     <Reference Include="Ocon">
       <HintPath>..\..\Ocon\Code\Ocon\Ocon\bin\Debug\Ocon.dll</HintPath>
     </Reference>
+    <Reference Include="Q42.HueApi">
+      <HintPath>..\packages\Q42.HueApi.1.8.7.42\lib\portable-net45+wp80+win81+wpa81\Q42.HueApi.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -56,13 +59,14 @@
   <ItemGroup>
     <Compile Include="CustomeCom.cs" />
     <Compile Include="EntityEquallityCompare.cs" />
+    <Compile Include="LightingSystems\HueLightingSystem.cs" />
     <Compile Include="Model\Beacon.cs" />
     <Compile Include="ComparableCollection.cs" />
-    <Compile Include="Model\IDevice.cs" />
+    <Compile Include="Model\ILightSource.cs" />
     <Compile Include="Model\IScenario.cs" />
     <Compile Include="Model\IZone.cs" />
     <Compile Include="Model\Scenario.cs" />
-    <Compile Include="Model\LightBulb.cs" />
+    <Compile Include="Model\HueLightSource.cs" />
     <Compile Include="Cal.cs" />
     <Compile Include="Model\Person.cs" />
     <Compile Include="Program.cs" />

@@ -1,10 +1,12 @@
 ﻿using System;
+using LightBulbs.LightingSystems;
+using Q42.HueApi;
 
 namespace ContextAwareLights.Model
 {
-    public class LightBulb : IDevice
+    public class HueLightSource : ILightSource
     {
-        public static LightBulbs.LightBulbs LightBulbs;
+        static readonly HueClient Client = HueLightingSystem.GetInstance("169.254.2.185");
         private int _lightLevel;
         public string Identifier { get; set; }
 
@@ -18,7 +20,7 @@ namespace ContextAwareLights.Model
             }
         }
 
-        public LightBulb(string identifier)
+        public HueLightSource(string identifier)
         {
             Identifier = identifier;
             LightLevel = 100;
@@ -26,12 +28,16 @@ namespace ContextAwareLights.Model
 
         public void On()
         {
-            LightBulbs.TurnOn(Identifier);
+            byte b = Convert.ToByte(LightLevel * 254);
+
+            Client.SendCommandAsync(new LightCommand { Brightness = b }, new[] { Identifier });
+
+            Client.SendCommandAsync(new LightCommand().TurnOn(), new[] { Identifier });
         }
 
         public void Off()
         {
-            LightBulbs.TurnOff(Identifier);
+            Client.SendCommandAsync(new LightCommand().TurnOff(), new[] { Identifier });
         }
 
         public void Restore()
@@ -40,13 +46,13 @@ namespace ContextAwareLights.Model
                 Off();
                 return; 
             }
-            LightBulbs.SetLvel(Identifier, (double) LightLevel / 100);
+            
             On();
         }
 
         public override bool Equals(object obj)
         {
-            var other = obj as LightBulb;
+            var other = obj as HueLightSource;
             return other != null && Identifier == other.Identifier;
         }
 

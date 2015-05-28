@@ -1,6 +1,6 @@
 ﻿namespace ContextAwareLights.Model
 {
-    public interface IDevice
+    public interface ILightSource
     {
         string Identifier { get; set; }
         void On();

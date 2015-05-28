@@ -6,7 +6,7 @@ namespace ContextAwareLights.Model
     {
         public int Priority { get; set; }
         public Zone Zone { get; set; }
-        public ISet<IDevice> Devices { get; set; }
+        public ISet<ILightSource> Devices { get; set; }
         public string Identifier { get; set; }
     }
 }

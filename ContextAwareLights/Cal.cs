@@ -50,7 +50,7 @@ namespace ContextAwareLights
         public void ActOnPeoplePresent(ICollection<Person> people)
         {
             lock (_mutex) _tick = false;
-            var state = new Dictionary<IDevice, Tuple<double, bool>>();
+            var state = new Dictionary<ILightSource, Tuple<double, bool>>();
 
 
             foreach (var device in _scenarios.SelectMany(scenario => scenario.Devices))

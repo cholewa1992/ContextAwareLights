@@ -24,7 +24,7 @@ namespace ContextAwareLights
             _pac = new Cal();
             _pac.AutoOffAfter(20);
             SetupOcon();
-            LightBulb.LightBulbs = new LightBulbs.LightBulbs(new List<ILightingSystem> { new HueLightingSystem("hue", "169.254.2.185") });
+            
 
             var spisebord = new Zone
             {
@@ -80,11 +80,11 @@ namespace ContextAwareLights
             _pac.AddScenario(new Scenario
             {
                 Zone = stue,
-                Devices = new HashSet<IDevice>
+                Devices = new HashSet<ILightSource>
                 {
-                    new LightBulb("hue1") {LightLevel = 25},
-                    new LightBulb("hue2") {LightLevel = 0},
-                    new LightBulb("hue3") {LightLevel = 25}
+                    new HueLightSource("1") {LightLevel = 25},
+                    new HueLightSource("2") {LightLevel = 0},
+                    new HueLightSource("3") {LightLevel = 25}
                 },
             });
 
@@ -92,11 +92,11 @@ namespace ContextAwareLights
             {
                 Zone = sofabord,
                 Priority = 1,
-                Devices = new HashSet<IDevice>
+                Devices = new HashSet<ILightSource>
                 {
-                    new LightBulb("hue1") {LightLevel = 1},
-                    new LightBulb("hue2") {LightLevel = 0,},
-                    new LightBulb("hue3") {LightLevel = 100}
+                    new HueLightSource("1") {LightLevel = 1},
+                    new HueLightSource("2") {LightLevel = 0,},
+                    new HueLightSource("3") {LightLevel = 100}
                 },
             });
 
@@ -104,11 +104,11 @@ namespace ContextAwareLights
             {
                 Priority = 1,
                 Zone = køkken,
-                Devices = new HashSet<IDevice>
+                Devices = new HashSet<ILightSource>
                 {
-                    new LightBulb("hue1") {LightLevel = 1},
-                    new LightBulb("hue2") {LightLevel = 100},
-                    new LightBulb("hue3") {LightLevel = 0,}
+                    new HueLightSource("1") {LightLevel = 1},
+                    new HueLightSource("2") {LightLevel = 100},
+                    new HueLightSource("3") {LightLevel = 0,}
                 }
             });
 
@@ -116,11 +116,11 @@ namespace ContextAwareLights
             {
                 Zone = spisebord,
                 Priority = 1,
-                Devices = new HashSet<IDevice>
+                Devices = new HashSet<ILightSource>
                 {
-                    new LightBulb("hue1") {LightLevel = 100,},
-                    new LightBulb("hue2") {LightLevel = 0},
-                    new LightBulb("hue3") {LightLevel = 1}
+                    new HueLightSource("1") {LightLevel = 100,},
+                    new HueLightSource("2") {LightLevel = 0},
+                    new HueLightSource("3") {LightLevel = 1}
                 }
             });
         }

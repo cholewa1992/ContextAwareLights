@@ -14,7 +14,7 @@ namespace PacUnitTest
         [TestMethod]
         public void PacActOnPerson_NoPerson()
         {
-            var deviceMock = new Mock<IDevice>();
+            var deviceMock = new Mock<ILightSource>();
 
             deviceMock.Setup(foo => foo.On()).Verifiable();
             deviceMock.Setup(foo => foo.Off()).Verifiable();
@@ -31,7 +31,7 @@ namespace PacUnitTest
             var cal = new Cal();
             cal.AddScenario(new Scenario
             {
-                Devices = new HashSet<IDevice> { deivce },
+                Devices = new HashSet<ILightSource> { deivce },
                 Identifier = "mock1",
                 Zone = zone
             });
@@ -47,7 +47,7 @@ namespace PacUnitTest
         [TestMethod]
         public void PacActOnPerson_OnePerson_ZoneTrue()
         {
-            var deviceMock = new Mock<IDevice>();
+            var deviceMock = new Mock<ILightSource>();
 
             deviceMock.Setup(foo => foo.On()).Verifiable();
             deviceMock.Setup(foo => foo.Off()).Verifiable();
@@ -64,7 +64,7 @@ namespace PacUnitTest
             var cal = new Cal();
             cal.AddScenario(new Scenario
             {
-                Devices = new HashSet<IDevice> { deivce },
+                Devices = new HashSet<ILightSource> { deivce },
                 Identifier = "mock1",
                 Zone = zone
             });
@@ -79,7 +79,7 @@ namespace PacUnitTest
         [TestMethod]
         public void PacActOnPerson_OnePerson_ZoneFalse()
         {
-            var deviceMock = new Mock<IDevice>();
+            var deviceMock = new Mock<ILightSource>();
 
             deviceMock.Setup(foo => foo.On()).Verifiable();
             deviceMock.Setup(foo => foo.Off()).Verifiable();
@@ -96,7 +96,7 @@ namespace PacUnitTest
             var cal = new Cal();
             cal.AddScenario(new Scenario
             {
-                Devices = new HashSet<IDevice> { deivce },
+                Devices = new HashSet<ILightSource> { deivce },
                 Identifier = "mock1",
                 Zone = zone
             });
@@ -111,13 +111,13 @@ namespace PacUnitTest
         [TestMethod]
         public void PacActOnPerson_TwoPerson_DifferentZones()
         {
-            var deviceMock1 = new Mock<IDevice>();
+            var deviceMock1 = new Mock<ILightSource>();
             deviceMock1.Setup(foo => foo.On()).Verifiable();
             deviceMock1.Setup(foo => foo.Off()).Verifiable();
             deviceMock1.Setup(foo => foo.Restore()).Verifiable();
             var deivce1 = deviceMock1.Object;
 
-            var deviceMock2 = new Mock<IDevice>();
+            var deviceMock2 = new Mock<ILightSource>();
             deviceMock2.Setup(foo => foo.On()).Verifiable();
             deviceMock2.Setup(foo => foo.Off()).Verifiable();
             deviceMock2.Setup(foo => foo.Restore()).Verifiable();
@@ -140,14 +140,14 @@ namespace PacUnitTest
             var cal = new Cal();
             cal.AddScenario(new Scenario
             {
-                Devices = new HashSet<IDevice> { deivce1 },
+                Devices = new HashSet<ILightSource> { deivce1 },
                 Identifier = "mock1",
                 Zone = zone1
             });
 
             cal.AddScenario(new Scenario
             {
-                Devices = new HashSet<IDevice> { deivce2 },
+                Devices = new HashSet<ILightSource> { deivce2 },
                 Identifier = "mock2",
                 Zone = zone2
             });
@@ -166,13 +166,13 @@ namespace PacUnitTest
         [TestMethod]
         public void PacActOnPerson_TwoPerson_SameZones()
         {
-            var deviceMock1 = new Mock<IDevice>();
+            var deviceMock1 = new Mock<ILightSource>();
             deviceMock1.Setup(foo => foo.On()).Verifiable();
             deviceMock1.Setup(foo => foo.Off()).Verifiable();
             deviceMock1.Setup(foo => foo.Restore()).Verifiable();
             var deivce1 = deviceMock1.Object;
 
-            var deviceMock2 = new Mock<IDevice>();
+            var deviceMock2 = new Mock<ILightSource>();
             deviceMock2.Setup(foo => foo.On()).Verifiable();
             deviceMock2.Setup(foo => foo.Off()).Verifiable();
             deviceMock2.Setup(foo => foo.Restore()).Verifiable();
@@ -194,14 +194,14 @@ namespace PacUnitTest
             var cal = new Cal();
             cal.AddScenario(new Scenario
             {
-                Devices = new HashSet<IDevice> { deivce1 },
+                Devices = new HashSet<ILightSource> { deivce1 },
                 Identifier = "mock1",
                 Zone = zone1
             });
 
             cal.AddScenario(new Scenario
             {
-                Devices = new HashSet<IDevice> { deivce2 },
+                Devices = new HashSet<ILightSource> { deivce2 },
                 Identifier = "mock2",
                 Zone = zone2
             });
@@ -220,13 +220,13 @@ namespace PacUnitTest
         [TestMethod]
         public void PacActOnPerson_TwoPerson_InNoZones()
         {
-            var deviceMock1 = new Mock<IDevice>();
+            var deviceMock1 = new Mock<ILightSource>();
             deviceMock1.Setup(foo => foo.On()).Verifiable();
             deviceMock1.Setup(foo => foo.Off()).Verifiable();
             deviceMock1.Setup(foo => foo.Restore()).Verifiable();
             var deivce1 = deviceMock1.Object;
 
-            var deviceMock2 = new Mock<IDevice>();
+            var deviceMock2 = new Mock<ILightSource>();
             deviceMock2.Setup(foo => foo.On()).Verifiable();
             deviceMock2.Setup(foo => foo.Off()).Verifiable();
             deviceMock2.Setup(foo => foo.Restore()).Verifiable();
@@ -249,14 +249,14 @@ namespace PacUnitTest
             var cal = new Cal();
             cal.AddScenario(new Scenario
             {
-                Devices = new HashSet<IDevice> { deivce1 },
+                Devices = new HashSet<ILightSource> { deivce1 },
                 Identifier = "mock1",
                 Zone = zone1
             });
 
             cal.AddScenario(new Scenario
             {
-                Devices = new HashSet<IDevice> { deivce2 },
+                Devices = new HashSet<ILightSource> { deivce2 },
                 Identifier = "mock2",
                 Zone = zone2
             });
